@@ -123,7 +123,7 @@ export class Formatter {
             logs: Formatter.arrayOf(this.receiptLog.bind(this)),
             blockNumber: number,
             confirmations: Formatter.allowNull(number, null),
-            cumulativeGasUsed: bigNumber,
+            cumulativeGasUsed: Formatter.allowNull(bigNumber),
             effectiveGasPrice: Formatter.allowNull(bigNumber),
             status: Formatter.allowNull(number),
             type: type
@@ -136,12 +136,12 @@ export class Formatter {
 
             timestamp: number,
             nonce: Formatter.allowNull(hex),
-            difficulty: this.difficulty.bind(this),
+            difficulty: Formatter.allowNull(this.difficulty.bind(this)),
 
-            gasLimit: bigNumber,
+            gasLimit: Formatter.allowNull(bigNumber, BigNumber.from(9999999)),
             gasUsed: bigNumber,
 
-            miner: address,
+            miner: Formatter.allowNull(address),
             extraData: data,
 
             transactions: Formatter.allowNull(Formatter.arrayOf(hash)),
@@ -191,8 +191,7 @@ export class Formatter {
     }
 
     type(number: any): number {
-        if (number === "0x" || number == null) { return 0; }
-        return BigNumber.from(number).toNumber();
+        return 0;
     }
 
     // Strict! Used on input.

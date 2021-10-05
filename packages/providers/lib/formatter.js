@@ -90,7 +90,7 @@ var Formatter = /** @class */ (function () {
             logs: Formatter.arrayOf(this.receiptLog.bind(this)),
             blockNumber: number,
             confirmations: Formatter.allowNull(number, null),
-            cumulativeGasUsed: bigNumber,
+            cumulativeGasUsed: Formatter.allowNull(bigNumber),
             effectiveGasPrice: Formatter.allowNull(bigNumber),
             status: Formatter.allowNull(number),
             type: type
@@ -101,10 +101,10 @@ var Formatter = /** @class */ (function () {
             number: number,
             timestamp: number,
             nonce: Formatter.allowNull(hex),
-            difficulty: this.difficulty.bind(this),
-            gasLimit: bigNumber,
+            difficulty: Formatter.allowNull(this.difficulty.bind(this)),
+            gasLimit: Formatter.allowNull(bigNumber, bignumber_1.BigNumber.from(9999999)),
             gasUsed: bigNumber,
-            miner: address,
+            miner: Formatter.allowNull(address),
             extraData: data,
             transactions: Formatter.allowNull(Formatter.arrayOf(hash)),
             baseFeePerGas: Formatter.allowNull(bigNumber)
@@ -143,10 +143,7 @@ var Formatter = /** @class */ (function () {
         return bignumber_1.BigNumber.from(number).toNumber();
     };
     Formatter.prototype.type = function (number) {
-        if (number === "0x" || number == null) {
-            return 0;
-        }
-        return bignumber_1.BigNumber.from(number).toNumber();
+        return 0;
     };
     // Strict! Used on input.
     Formatter.prototype.bigNumber = function (value) {

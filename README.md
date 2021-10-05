@@ -1,10 +1,16 @@
-The Ethers Project
+The Ethers Project - Klaytn support test
 ==================
 
-[![npm (tag)](https://img.shields.io/npm/v/ethers)](https://www.npmjs.com/package/ethers)
-[![Node.js CI](https://github.com/ethers-io/ethers.js/workflows/Node.js%20CI/badge.svg?branch=ethers-v5-beta)](https://github.com/ethers-io/ethers.js/actions?query=workflow%3A%22Node.js+CI%22)
+This project is forked from https://github.com/ethers-io/ethers.js. \
+The master branch is based on Ethers v5.4.7 and the formatter of the providers package is changed to support Klaytn APIs. 
 
-A complete Ethereum wallet implementation and utilities in JavaScript (and TypeScript).
+*Warning*
+- This repository is for testing purposes only.
+- Following fields from the API return data may have invalid values.
+  - In `Block`: nonce, mixHash, sha3Uncles, miner, difficulty, gaslimit, uncles, baseFeePerGas, totalDifficulty
+  - In `Transaction`: type, maxFeePerGas, maxPriorityFeePerGas, accessList, chainId, v, r, s
+  - In `receipt`: type, cumulativeGasUsed, effectiveGasPrice, root
+
 
 **Features:**
 
